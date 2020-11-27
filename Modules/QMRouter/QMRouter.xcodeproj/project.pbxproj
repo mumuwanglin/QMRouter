@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		846DE4A4256E2EC1006FC165 /* YYProtected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE49C256E2EC1006FC165 /* YYProtected.swift */; };
 		846DE4A5256E2EC1006FC165 /* QMURLPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE49D256E2EC1006FC165 /* QMURLPattern.swift */; };
 		846DE4A6256E2EC1006FC165 /* QMRouterModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE49E256E2EC1006FC165 /* QMRouterModuleProtocol.swift */; };
 		846DE4A7256E2EC1006FC165 /* QMApplicationLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE49F256E2EC1006FC165 /* QMApplicationLifeCycle.swift */; };
@@ -15,6 +14,7 @@
 		846DE4A9256E2EC1006FC165 /* QMModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE4A1256E2EC1006FC165 /* QMModuleProtocol.swift */; };
 		846DE4AA256E2EC1006FC165 /* QMURLMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE4A2256E2EC1006FC165 /* QMURLMatcher.swift */; };
 		846DE4AB256E2EC1006FC165 /* QMRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE4A3256E2EC1006FC165 /* QMRouter.swift */; };
+		84914B3D2570C96000B85672 /* QMProtected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84914B3C2570C96000B85672 /* QMProtected.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +31,6 @@
 
 /* Begin PBXFileReference section */
 		846DE483256E2E47006FC165 /* libQMRouter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libQMRouter.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		846DE49C256E2EC1006FC165 /* YYProtected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYProtected.swift; sourceTree = "<group>"; };
 		846DE49D256E2EC1006FC165 /* QMURLPattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMURLPattern.swift; sourceTree = "<group>"; };
 		846DE49E256E2EC1006FC165 /* QMRouterModuleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMRouterModuleProtocol.swift; sourceTree = "<group>"; };
 		846DE49F256E2EC1006FC165 /* QMApplicationLifeCycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMApplicationLifeCycle.swift; sourceTree = "<group>"; };
@@ -39,6 +38,7 @@
 		846DE4A1256E2EC1006FC165 /* QMModuleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMModuleProtocol.swift; sourceTree = "<group>"; };
 		846DE4A2256E2EC1006FC165 /* QMURLMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMURLMatcher.swift; sourceTree = "<group>"; };
 		846DE4A3256E2EC1006FC165 /* QMRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMRouter.swift; sourceTree = "<group>"; };
+		84914B3C2570C96000B85672 /* QMProtected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMProtected.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 		846DE49B256E2EC1006FC165 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				846DE49C256E2EC1006FC165 /* YYProtected.swift */,
+				84914B3C2570C96000B85672 /* QMProtected.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -153,7 +153,7 @@
 				846DE4A5256E2EC1006FC165 /* QMURLPattern.swift in Sources */,
 				846DE4A7256E2EC1006FC165 /* QMApplicationLifeCycle.swift in Sources */,
 				846DE4A8256E2EC1006FC165 /* QMRouterHandlerProtocol.swift in Sources */,
-				846DE4A4256E2EC1006FC165 /* YYProtected.swift in Sources */,
+				84914B3D2570C96000B85672 /* QMProtected.swift in Sources */,
 				846DE4AA256E2EC1006FC165 /* QMURLMatcher.swift in Sources */,
 				846DE4A6256E2EC1006FC165 /* QMRouterModuleProtocol.swift in Sources */,
 				846DE4A9256E2EC1006FC165 /* QMModuleProtocol.swift in Sources */,

@@ -34,5 +34,6 @@ public protocol QMRouterHandlerProtocol {
     /// 处理 url
     static func handle(_ url: String, complexParams: [String: Any]? , completion: QMRouteCompletion?) -> Any?
     
+    /// 绑定路由完成后的回调
     static func complete(_ params: Dictionary<String, Any>, result: Any)
 }
