@@ -9,6 +9,7 @@ import Foundation
 let kQMRouterURL = "kQMRouterURL"
 let kQMRouterCompletion = "kQMRouterCompletion"
 
+/// Module 处理类
 final public class QMRouter: QMRouterModuleProtocol {
     
     /// 保存Module的字典
@@ -64,7 +65,7 @@ final public class QMRouter: QMRouterModuleProtocol {
     }
 }
 
-
+/// 路由 处理类
 extension QMRouter: QMRouterHandlerProtocol {
     
     @QMProtected
@@ -110,20 +111,25 @@ extension QMRouter: QMRouterHandlerProtocol {
     
     /// 带回调方法的handle处理
     public static func handle(_ url: String, complexParams: [String : Any]?, completion: QMRouteCompletion?) -> Any? {
-        
+        // 解析URL
         let urlAnalysis = QMURLAnalysis(urlString: url)
         
+        // 回去绑定的路由
         let handler = self.routes[urlAnalysis.urlString]
         
+        // 保存路由中的参数
         var params = [String: Any]()
+        params = params.merging(complexParams ?? [:]){ (current, _) in current }
         params = params.merging(urlAnalysis.components){ (current, _) in current }
         params[kQMRouterURL] = urlAnalysis.urlString
         params[kQMRouterCompletion] = completion
         
-        if let block = handler {            
+        // 确保回调可以执行
+        if let block = handler {
              return block(params)
         }
-
+        
+        assert(false, "路由信息获取失败")
         return nil
     }
     
@@ -131,7 +137,7 @@ extension QMRouter: QMRouterHandlerProtocol {
     public static func complete(_ params: Dictionary<String, Any>, result: Any) {
         let completion = params[kQMRouterCompletion] as? QMRouteCompletion
                 
-        if let block = completion {            
+        if let block = completion {
             block(result)
         }
     }
