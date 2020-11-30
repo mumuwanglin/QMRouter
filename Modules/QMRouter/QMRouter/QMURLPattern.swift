@@ -44,3 +44,30 @@ class QMURLAnalysis: QMURLPattern {
     }
     
 }
+
+/// 解析Web跳转的URL
+class QMWebURLAnalysis: QMURLPattern {
+    var urlString: String = ""
+    
+    var components: Dictionary<String, String> = [:]
+    
+    init(linkUrl: String) {
+        if !linkUrl.isEmpty, let urlString = linkUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL.init(string: urlString) {
+                let routePattern = url.absoluteString
+                if let components = URLComponents.init(string: routePattern), let scheme = components.scheme {
+                    
+                }
+            }
+        }
+    }
+}
+
+
+/// 解析UIApplication跳转的URL
+class QMWhiteListURLAnalysis: QMURLPattern {
+    
+    var urlString: String = ""
+    
+    var components: Dictionary<String, String> = [:]
+}
