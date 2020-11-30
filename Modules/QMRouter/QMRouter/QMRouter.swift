@@ -76,14 +76,14 @@ extension QMRouter: QMRouterHandlerProtocol {
     public static var routes = [String: QMRouteHandler]()
     
     public static func bind(_ url: String, to handler: @escaping ([String : Any]) -> Any) {
-        let urlAnalysis = QMURLAnalysis(urlString: url)
+        let urlAnalysis = QMURLAnalysis(url)
         
-        routes[urlAnalysis.urlString] = handler
+        routes[urlAnalysis.host] = handler
     }
     
     public static func unbind(_ url: String) {
-        let urlAnalysis = QMURLAnalysis(urlString: url)
-        routes.removeValue(forKey: urlAnalysis.urlString)
+        let urlAnalysis = QMURLAnalysis(url)
+        routes.removeValue(forKey: urlAnalysis.host)
     }
     
     public static func unbindAllURLs() {
@@ -91,12 +91,12 @@ extension QMRouter: QMRouterHandlerProtocol {
     }
     
     public static func canHandle(_ url: String) -> Bool {
-        let urlAnalysis = QMURLAnalysis(urlString: url)
+        let urlAnalysis = QMURLAnalysis(url)
         if url.isEmpty {
             return false
         }
         
-        guard self.routes[urlAnalysis.urlString] != nil else {
+        guard self.routes[urlAnalysis.host] != nil else {
             return false
         }
         return true
@@ -110,13 +110,13 @@ extension QMRouter: QMRouterHandlerProtocol {
     
     public static func handle(_ url: String, complexParams: [String : Any]?, completion: QMRouteCompletion?) -> Any? {
         
-        let urlAnalysis = QMURLAnalysis(urlString: url)
+        let urlAnalysis = QMURLAnalysis(url)
         
-        let handler = self.routes[urlAnalysis.urlString]
+        let handler = self.routes[urlAnalysis.host]
         
         var params = [String: Any]()
         params = params.merging(urlAnalysis.components){ (current, _) in current }
-        params[kQMRouterURL] = urlAnalysis.urlString
+        params[kQMRouterURL] = urlAnalysis.host
         params[kQMRouterCompletion] = completion
         
         if let block = handler {            
