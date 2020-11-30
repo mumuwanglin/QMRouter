@@ -9,7 +9,7 @@ import UIKit
 
 public class GoodsDetailsViewController: UIViewController {
 
-    public let saleModule = QMRouter.module(for: "\(SaleModuleService.self)") as? SaleModuleService
+    public let saleModule = QMRouter.module(for: SaleModuleService.self)
     
     public var goodsId: String?
     

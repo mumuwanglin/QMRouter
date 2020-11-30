@@ -9,26 +9,26 @@ import Foundation
 let kQMRouterURL = "kQMRouterURL"
 let kQMRouterCompletion = "kQMRouterCompletion"
 
-/// Module 处理类
 final public class QMRouter: QMRouterModuleProtocol {
     
-    /// 保存Module的字典
-    public static var moduleDict = [String: QMModuleProtocol]()
+    // 保存Module的字典
+    public static var moduleDict = [String: Any]()
     
     /// 所有注册的 module
     public static var allRegisterModules: [QMModuleProtocol] {
-        return moduleDict.values.sorted { $0.priority > $1.priority }
+        let modules = moduleDict.values.compactMap { $0 as? QMModuleProtocol }
+        return modules.sorted { $0.priority > $1.priority }
     }
 
     /// 注册 module
-    public static func register<Module: QMModuleProtocol & QMSharedInstanceProtocol>(_ protocolName: String, module: Module) {
-        assert(!protocolName.isEmpty, "协议名不能为空")
-        moduleDict[protocolName] = module
+    public static func register<Module>(_ protocolType: Module.Type, module: Module) {
+        let key = moduleKey(for: protocolType)
+        moduleDict[key] = module
     }
 
     /// 注销 module
-    public static func unregister(_ protocolName: String) {
-        moduleDict.removeValue(forKey: protocolName)
+    public static func unregister<Module>(_ protocolType: Module.Type) {
+        moduleDict.removeValue(forKey: "\(protocolType)")
     }
 
     /// 注销所有 modules
@@ -37,23 +37,23 @@ final public class QMRouter: QMRouterModuleProtocol {
     }
     
     /// 是否注册过 module
-    public static func registered(for protocolName: String) -> Bool {
-        return moduleDict[protocolName] != nil
+    public static func registered<Module>(for protocolType: Module.Type) -> Bool {
+        let key = moduleKey(for: protocolType)
+        return moduleDict[key] != nil
     }
 
     /// 获取 module
-    public static func module(for protocolName: String) -> QMModuleProtocol? {
-        guard  let module = moduleDict[protocolName] else {
-            assert(false, "Module获取失败")
+    public static func module<Module>(for protocolType: Module.Type) -> Module? {
+        let key = moduleKey(for: protocolType)
+        guard  let module = moduleDict[key] else {
             return nil
         }
-        return module
+        return module as? Module
     }
 
     /// 初始化所有的 modules
     public static func setupAllModules() {
-        allRegisterModules.forEach { (module) in
-            // 判断是否需要异步测试Module
+        allRegisterModules.forEach { (module) in            
             if module.setupModuleSynchronously {
                 DispatchQueue.global(qos: .default).async {
                     module.setup()
@@ -63,37 +63,36 @@ final public class QMRouter: QMRouterModuleProtocol {
             }
         }
     }
+    
+    private static func moduleKey<Module>(for protocolType: Module.Type) -> String {
+        return "\(protocolType)"
+    }
 }
 
-/// 路由 处理类
+
 extension QMRouter: QMRouterHandlerProtocol {
     
     @QMProtected
     public static var routes = [String: QMRouteHandler]()
     
-    /// 绑定路由
     public static func bind(_ url: String, to handler: @escaping ([String : Any]) -> Any) {
         let urlAnalysis = QMURLAnalysis(urlString: url)
         
         routes[urlAnalysis.urlString] = handler
     }
     
-    /// 解绑路由
     public static func unbind(_ url: String) {
         let urlAnalysis = QMURLAnalysis(urlString: url)
         routes.removeValue(forKey: urlAnalysis.urlString)
     }
     
-    /// 解绑所以路由
     public static func unbindAllURLs() {
         routes.removeAll()
     }
     
-    /// 是否可以处理 url
     public static func canHandle(_ url: String) -> Bool {
         let urlAnalysis = QMURLAnalysis(urlString: url)
-        
-        if urlAnalysis.urlString.isEmpty {
+        if url.isEmpty {
             return false
         }
         
@@ -109,35 +108,29 @@ extension QMRouter: QMRouterHandlerProtocol {
         return handle(url, complexParams: nil, completion: nil)
     }
     
-    /// 带回调方法的handle处理
     public static func handle(_ url: String, complexParams: [String : Any]?, completion: QMRouteCompletion?) -> Any? {
-        // 解析URL
+        
         let urlAnalysis = QMURLAnalysis(urlString: url)
         
-        // 回去绑定的路由
         let handler = self.routes[urlAnalysis.urlString]
         
-        // 保存路由中的参数
         var params = [String: Any]()
-        params = params.merging(complexParams ?? [:]){ (current, _) in current }
         params = params.merging(urlAnalysis.components){ (current, _) in current }
         params[kQMRouterURL] = urlAnalysis.urlString
         params[kQMRouterCompletion] = completion
         
-        // 确保回调可以执行
-        if let block = handler {
+        if let block = handler {            
              return block(params)
         }
-        
-        assert(false, "路由信息获取失败")
+
         return nil
     }
     
-    /// 绑定路由完成后的回调
     public static func complete(_ params: Dictionary<String, Any>, result: Any) {
         let completion = params[kQMRouterCompletion] as? QMRouteCompletion
                 
         if let block = completion {
+            print("complete")
             block(result)
         }
     }

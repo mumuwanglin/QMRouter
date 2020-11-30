@@ -9,8 +9,8 @@ import UIKit
 
 class GoodsListViewController: UIViewController {
 
-    let goodsModule = QMRouter.module(for: "\(GoodsModuleService.self)") as? GoodsModuleService
-    let saleModule = QMRouter.module(for: "\(SaleModuleService.self)") as? SaleModuleService
+    let goodsModule = QMRouter.module(for: GoodsModuleService.self)
+    let saleModule = QMRouter.module(for: SaleModuleService.self)
     
     private lazy var tableView: UITableView = {
         let tmp = UITableView()

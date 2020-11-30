@@ -37,9 +37,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     // 注册协议
     func registerModules() {
-        QMRouter.register("\(HomeModuleService.self)", module: HomeModule.sharedInstance)
-        QMRouter.register("\(GoodsModuleService.self)", module: GoodsModule.sharedInstance)
-        QMRouter.register("\(SaleModuleService.self)", module: SaleModule.sharedInstance)
+        QMRouter.register(HomeModuleService.self, module: HomeModule.sharedInstance)
+        QMRouter.register(GoodsModuleService.self, module: GoodsModule.sharedInstance)
+        QMRouter.register(SaleModuleService.self, module: SaleModule.sharedInstance)
         QMRouter.setupAllModules()
     }
     

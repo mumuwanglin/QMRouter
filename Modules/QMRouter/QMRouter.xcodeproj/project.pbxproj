@@ -14,7 +14,7 @@
 		846DE4A9256E2EC1006FC165 /* QMModuleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE4A1256E2EC1006FC165 /* QMModuleProtocol.swift */; };
 		846DE4AA256E2EC1006FC165 /* QMURLMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE4A2256E2EC1006FC165 /* QMURLMatcher.swift */; };
 		846DE4AB256E2EC1006FC165 /* QMRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DE4A3256E2EC1006FC165 /* QMRouter.swift */; };
-		84914B3D2570C96000B85672 /* QMProtected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84914B3C2570C96000B85672 /* QMProtected.swift */; };
+		84914B672574960F00B85672 /* QMProtected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84914B662574960E00B85672 /* QMProtected.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,7 +38,7 @@
 		846DE4A1256E2EC1006FC165 /* QMModuleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMModuleProtocol.swift; sourceTree = "<group>"; };
 		846DE4A2256E2EC1006FC165 /* QMURLMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMURLMatcher.swift; sourceTree = "<group>"; };
 		846DE4A3256E2EC1006FC165 /* QMRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMRouter.swift; sourceTree = "<group>"; };
-		84914B3C2570C96000B85672 /* QMProtected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMProtected.swift; sourceTree = "<group>"; };
+		84914B662574960E00B85672 /* QMProtected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QMProtected.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 		846DE49B256E2EC1006FC165 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				84914B3C2570C96000B85672 /* QMProtected.swift */,
+				84914B662574960E00B85672 /* QMProtected.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -149,11 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84914B672574960F00B85672 /* QMProtected.swift in Sources */,
 				846DE4AB256E2EC1006FC165 /* QMRouter.swift in Sources */,
 				846DE4A5256E2EC1006FC165 /* QMURLPattern.swift in Sources */,
 				846DE4A7256E2EC1006FC165 /* QMApplicationLifeCycle.swift in Sources */,
 				846DE4A8256E2EC1006FC165 /* QMRouterHandlerProtocol.swift in Sources */,
-				84914B3D2570C96000B85672 /* QMProtected.swift in Sources */,
 				846DE4AA256E2EC1006FC165 /* QMURLMatcher.swift in Sources */,
 				846DE4A6256E2EC1006FC165 /* QMRouterModuleProtocol.swift in Sources */,
 				846DE4A9256E2EC1006FC165 /* QMModuleProtocol.swift in Sources */,
