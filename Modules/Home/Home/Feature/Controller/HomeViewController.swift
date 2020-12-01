@@ -95,9 +95,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let goods = goodsModule?.popularGoodsList()[indexPath.row]
-            let routeURL = "\(kRouteGoodsDetail)?\(kRouteGoodsDetailParamId)=\(String(describing: goods?.goodsId ?? ""))"
+            let routeURL = kRouteGoodsDetail//"\(kRouteGoodsDetail)?\(kRouteGoodsDetailParamId)=\(String(describing: goods?.goodsId ?? ""))"
                     
-            let vc = QMRouter.handle(routeURL, complexParams: ["key":"value"]) { (params) in
+            let vc = QMRouter.handle(routeURL, complexParams: [kRouteGoodsDetailParamId: "\(String(describing: goods?.goodsId ?? ""))"]) { (params) in
                 
             } as! UIViewController
             

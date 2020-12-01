@@ -7,7 +7,7 @@
 
 import Foundation
 
-public let kRouteSaleShoppingCart: String = "//sale/shopping_chart"
+public let kRouteSaleShoppingCart: String = "qmrouter://sale/shopping_chart"
 
 public protocol SaleModuleService: QMModuleProtocol {
     func addShoppingCartGoods(goodsId: String)

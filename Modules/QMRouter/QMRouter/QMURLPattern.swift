@@ -7,10 +7,18 @@
 
 import Foundation
 
+public enum QMURLPatternType: String {
+    case web = "freereader"     // 前端跳转的路由
+    case router = "qmrouter"    // APP内自定义跳转的路由
+    case openURL = "openurl"    // UIApplication打开URL
+}
+
 public protocol QMURLPattern {
+    /// 路由类型
+    var urlType: QMURLPatternType? { get }
     
-    /// url
-    var urlString: String { get }
+    /// 存储到路由的key
+    var urlKey: String { get }
     
     /// 组成
     var components: Dictionary<String, String> { get }
@@ -19,55 +27,40 @@ public protocol QMURLPattern {
 
 /// URL解析类
 class QMURLAnalysis: QMURLPattern {
+
+    var urlType: QMURLPatternType?
     
-    var urlString: String = ""
+    var urlKey: String = ""
     
     var components: Dictionary<String, String> = Dictionary()
     
-    init(urlString: String) {
-        let URL = NSURL(string: urlString)
-        
-        self.urlString = "\(String(describing: URL?.host  ?? ""))\(String(describing: URL?.path  ?? ""))"
-        
-        let query = URL?.query
-        
-        if query != nil {
-            let querryArray = query?.components(separatedBy: "&") ?? []
-            
-            for queryComponent in querryArray {
-                let queryComponentPartArray = queryComponent.components(separatedBy: "=")
-                if queryComponentPartArray.count >= 2 {
-                    self.components.updateValue(queryComponentPartArray[1] as String, forKey: queryComponentPartArray[0])
-                }
-            }
-        }
-    }
-    
-}
-
-/// 解析Web跳转的URL
-class QMWebURLAnalysis: QMURLPattern {
-    var urlString: String = ""
-    
-    var components: Dictionary<String, String> = [:]
-    
-    init(linkUrl: String) {
+    init(_ linkUrl: String) {
         if !linkUrl.isEmpty, let urlString = linkUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            if let url = URL.init(string: urlString) {
-                let routePattern = url.absoluteString
-                if let components = URLComponents.init(string: routePattern), let scheme = components.scheme {
-                    
+            
+            let URL = NSURL(string: urlString)
+            
+            self.urlKey = "//\( URL?.host ?? "")\(URL?.path ?? "")"
+            
+            if URL?.scheme == QMURLPatternType.router.rawValue {
+                self.urlType = .router
+            } else if URL?.scheme == QMURLPatternType.web.rawValue {
+                self.urlType = .web
+            } else {
+                self.urlType = .openURL
+            }
+            
+            let query = URL?.query
+            
+            if query != nil {
+                let querryArray = query?.components(separatedBy: "&") ?? []
+                
+                for queryComponent in querryArray {
+                    let queryComponentPartArray = queryComponent.components(separatedBy: "=")
+                    if queryComponentPartArray.count >= 2 {
+                        self.components.updateValue(queryComponentPartArray[1] as String, forKey: queryComponentPartArray[0])
+                    }
                 }
             }
         }
     }
-}
-
-
-/// 解析UIApplication跳转的URL
-class QMWhiteListURLAnalysis: QMURLPattern {
-    
-    var urlString: String = ""
-    
-    var components: Dictionary<String, String> = [:]
 }

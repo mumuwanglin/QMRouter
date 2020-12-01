@@ -76,14 +76,14 @@ extension QMRouter: QMRouterHandlerProtocol {
     public static var routes = [String: QMRouteHandler]()
     
     public static func bind(_ url: String, to handler: @escaping ([String : Any]) -> Any) {
-        let urlAnalysis = QMURLAnalysis(urlString: url)
+        let urlAnalysis = QMURLAnalysis(url)
         
-        routes[urlAnalysis.urlString] = handler
+        routes[urlAnalysis.urlKey] = handler
     }
     
     public static func unbind(_ url: String) {
-        let urlAnalysis = QMURLAnalysis(urlString: url)
-        routes.removeValue(forKey: urlAnalysis.urlString)
+        let urlAnalysis = QMURLAnalysis(url)
+        routes.removeValue(forKey: urlAnalysis.urlKey)
     }
     
     public static func unbindAllURLs() {
@@ -91,12 +91,12 @@ extension QMRouter: QMRouterHandlerProtocol {
     }
     
     public static func canHandle(_ url: String) -> Bool {
-        let urlAnalysis = QMURLAnalysis(urlString: url)
+        let urlAnalysis = QMURLAnalysis(url)
         if url.isEmpty {
             return false
         }
         
-        guard self.routes[urlAnalysis.urlString] != nil else {
+        guard self.routes[urlAnalysis.urlKey] != nil else {
             return false
         }
         return true
@@ -108,29 +108,31 @@ extension QMRouter: QMRouterHandlerProtocol {
         return handle(url, complexParams: nil, completion: nil)
     }
     
+    // 处理带参数的 handle
     public static func handle(_ url: String, complexParams: [String : Any]?, completion: QMRouteCompletion?) -> Any? {
         
-        let urlAnalysis = QMURLAnalysis(urlString: url)
+        let urlAnalysis = QMURLAnalysis(url)
         
-        let handler = self.routes[urlAnalysis.urlString]
+        let handler = self.routes[urlAnalysis.urlKey]
         
         var params = [String: Any]()
+        params = params.merging(complexParams ?? [:]){ (current, _) in current }
         params = params.merging(urlAnalysis.components){ (current, _) in current }
-        params[kQMRouterURL] = urlAnalysis.urlString
+        params[kQMRouterURL] = urlAnalysis.urlKey
         params[kQMRouterCompletion] = completion
         
         if let block = handler {            
              return block(params)
         }
-
+        
+        assert(false, "路由信息获取失败,请检查URL是否匹配")
         return nil
     }
     
     public static func complete(_ params: Dictionary<String, Any>, result: Any) {
         let completion = params[kQMRouterCompletion] as? QMRouteCompletion
                 
-        if let block = completion {
-            print("complete")
+        if let block = completion {            
             block(result)
         }
     }

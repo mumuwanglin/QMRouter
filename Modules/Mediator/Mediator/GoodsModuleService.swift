@@ -8,8 +8,8 @@
 import Foundation
 
 
-public let kRouteAllGoodsList: String = "//goods/all_goods_list"
-public let kRouteGoodsDetail: String = "//goods/detail"
+public let kRouteAllGoodsList: String = "qmrouter://goods/all_goods_list"
+public let kRouteGoodsDetail: String = "qmrouter://goods/detail"
 public let kRouteGoodsDetailParamId: String = "id"
 
 public protocol GoodsProtocol {

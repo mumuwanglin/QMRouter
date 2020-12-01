@@ -7,7 +7,7 @@
 
 import Foundation
 
-public let kRouteHomePage: String = "//home/home_page"
+public let kRouteHomePage: String = "qmrouter://home/home_page"
 
 public protocol HomeModuleService: QMModuleProtocol {
     
