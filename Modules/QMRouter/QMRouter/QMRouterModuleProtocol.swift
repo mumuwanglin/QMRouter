@@ -8,6 +8,8 @@
 import Foundation
 
 public protocol QMRouterModuleProtocol {
+    /// 所有注册的Modules
+    static var allRegisterModules: [QMModuleProtocol] { get }
     
     /// 注册 module
     static func register<Module>(_ protocolType: Module.Type, module: Module)
