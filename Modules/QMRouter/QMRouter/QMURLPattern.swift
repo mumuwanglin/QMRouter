@@ -21,7 +21,7 @@ public protocol QMURLPattern {
     var urlKey: String { get }
     
     /// 组成
-    var components: Dictionary<String, String> { get }
+    var components: Dictionary<String, Any> { get }
 }
 
 
@@ -32,7 +32,7 @@ class QMURLAnalysis: QMURLPattern {
     
     var urlKey: String = ""
     
-    var components: Dictionary<String, String> = Dictionary()
+    var components: Dictionary<String, Any> = Dictionary()
     
     init(_ linkUrl: String) {
         if !linkUrl.isEmpty, let urlString = linkUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
@@ -48,19 +48,53 @@ class QMURLAnalysis: QMURLPattern {
             } else {
                 self.urlType = .openURL
             }
-            
-            let query = URL?.query
-            
-            if query != nil {
-                let querryArray = query?.components(separatedBy: "&") ?? []
-                
-                for queryComponent in querryArray {
-                    let queryComponentPartArray = queryComponent.components(separatedBy: "=")
-                    if queryComponentPartArray.count >= 2 {
-                        self.components.updateValue(queryComponentPartArray[1] as String, forKey: queryComponentPartArray[0])
+  
+            if let components = URLComponents.init(string: URL?.absoluteString ?? "") {
+                let queryParams = extractQueryParams(components: components)
+                self.components = convertParamsToJson(queryParams: queryParams, linkUrl: linkUrl, host: components.host, scheme: URL?.scheme) as? Dictionary<String, Any> ?? [:]                
+            }
+        }
+    }
+    
+    
+    /// 提取参数
+    func extractQueryParams(components: URLComponents) -> NSMutableDictionary {
+        let queryParams = NSMutableDictionary.init()
+        if let queryItems = components.queryItems {
+            for item in queryItems {
+                if item.value == nil {
+                    continue
+                }
+                if (queryParams[item.name] == nil) {
+                    queryParams[item.name] = item.value
+                } else {
+                    let existingValue = queryParams[item.name]
+                    queryParams[item.name] = [existingValue, item.value]
+                }
+            }
+        }
+        return queryParams
+    }
+
+    /// 转换模型
+    func convertParamsToJson(queryParams: NSMutableDictionary, linkUrl: String, host: String?, scheme: String?) -> Any? {
+        
+        if let _ = queryParams.object(forKey: "param" as Any) as? String, let host = host, let scheme = scheme {
+            if let tmpUrlString: NSString = linkUrl as NSString? {
+                let tmpParamString = "\(scheme)://\(host)?param="
+                let paramString = tmpUrlString.substring(from: tmpParamString.count)
+                if let data = paramString.removingPercentEncoding?.data(using: .utf8) {
+                    do {
+                        let parsedJSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+                        return parsedJSON
+                    } catch let error {
+                        assert(false, "parsed \(queryParams) error: \(error)")
+                        print("parsed \(queryParams) error: \(error)")
                     }
                 }
             }
         }
+        
+        return [:]
     }
 }

@@ -1,12 +1,7 @@
-# Mac
-*.DS_Store
-
 # Xcode
 #
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
-## Build generated
 build/
+Build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -16,58 +11,52 @@ build/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
-xcuserdata\
 *.xccheckout
 *.moved-aside
 DerivedData
-*.xcuserstate
-
-## Other
-*.moved-aside
-*.xccheckout
-*.xcscmblueprint
-*.WeDrive
-
-## Obj-C/Swift specific
 *.hmap
 *.ipa
-*.dSYM.zip
-*.dSYM
+*.xcuserstate
+*.o
+.swiftpm/
+docs/docsets
+*.xcframework
 
-## Playgrounds
 timeline.xctimeline
-playground.xcworkspace
-
-# Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-.build/
+.vscode
 
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
-Pods/
+# Pods/
 
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
-/Code/QMNovel/Carthage/Checkouts
+# Carthage/Checkouts
 
-/Code/QMNovel/Carthage/Build
+Carthage/Build
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
 
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
+# Various
+
+.DS_Store
+
+
+# Linux
+
+*.swp
+*.swo
+
+# Swift Package Manager
+
+.build/
+Packages/
+.swiftpm
+
+# AppCode
+
+.idea
