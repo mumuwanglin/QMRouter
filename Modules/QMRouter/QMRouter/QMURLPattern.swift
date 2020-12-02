@@ -7,12 +7,14 @@
 
 import Foundation
 
+/// 路由类型类
 public enum QMURLPatternType: String {
     case web = "freereader"     // 前端跳转的路由
     case router = "qmrouter"    // APP内自定义跳转的路由
     case openURL = "openurl"    // UIApplication打开URL
 }
 
+/// URL 匹配信息存储类的协议
 public protocol QMURLPattern {
     /// 路由类型
     var urlType: QMURLPatternType? { get }
@@ -51,7 +53,7 @@ class QMURLAnalysis: QMURLPattern {
   
             if let components = URLComponents.init(string: URL?.absoluteString ?? "") {
                 let queryParams = extractQueryParams(components: components)
-                self.components = convertParamsToJson(queryParams: queryParams, linkUrl: linkUrl, host: components.host, scheme: URL?.scheme) as? Dictionary<String, Any> ?? [:]                
+                self.components = convertParamsToJson(queryParams: queryParams, linkUrl: linkUrl, host: components.host, scheme: URL?.scheme) as? Dictionary<String, Any> ?? [:]
             }
         }
     }

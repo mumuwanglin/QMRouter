@@ -75,21 +75,25 @@ extension QMRouter: QMRouterHandlerProtocol {
     @QMProtected
     public static var routes = [String: QMRouteHandler]()
     
+    /// 绑定路由
     public static func bind(_ url: String, to handler: @escaping ([String : Any]) -> Any) {
         let urlAnalysis = QMURLAnalysis(url)
         
         routes[urlAnalysis.urlKey] = handler
     }
     
+    /// 解绑路由
     public static func unbind(_ url: String) {
         let urlAnalysis = QMURLAnalysis(url)
         routes.removeValue(forKey: urlAnalysis.urlKey)
     }
     
+    /// 解绑所有路由
     public static func unbindAllURLs() {
         routes.removeAll()
     }
     
+    /// 判断是否可以绑定路由
     public static func canHandle(_ url: String) -> Bool {
         let urlAnalysis = QMURLAnalysis(url)
         if url.isEmpty {
@@ -108,7 +112,7 @@ extension QMRouter: QMRouterHandlerProtocol {
         return handle(url, complexParams: nil, completion: nil)
     }
     
-    // 处理带参数的 handle
+    /// 处理带参数的 handle
     public static func handle(_ url: String, complexParams: [String : Any]?, completion: QMRouteCompletion?) -> Any? {
         
         let urlAnalysis = QMURLAnalysis(url)
@@ -129,6 +133,7 @@ extension QMRouter: QMRouterHandlerProtocol {
         return nil
     }
     
+    /// 路由获取成功的回调
     public static func complete(_ params: Dictionary<String, Any>, result: Any) {
         let completion = params[kQMRouterCompletion] as? QMRouteCompletion
                 
