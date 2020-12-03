@@ -17,7 +17,7 @@ final public class GoodsModule: GoodsModuleService,QMSharedInstanceProtocol {
             detailVC.goodsId = params[kRouteGoodsDetailParamId] as? String
             
             // 注册完成后的一些操作
-            QMRouter.complete(params, result: "1")
+            QMRouter.complete(params, result: "我是成功回调的参数")
             
             return detailVC
         }

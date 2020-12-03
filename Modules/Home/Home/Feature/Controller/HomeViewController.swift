@@ -99,7 +99,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let goods = goodsModule?.popularGoodsList()[indexPath.row]
                     
             let goodsDetailVC = QMRouter.handle(kRouteGoodsDetail, complexParams: [kRouteGoodsDetailParamId: "\(String(describing: goods?.goodsId ?? ""))"]) { (params) in
-                
+                print(params)
             }
             if let vc = goodsDetailVC as? UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)

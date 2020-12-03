@@ -80,7 +80,7 @@ extension GoodsListViewController: UITableViewDelegate, UITableViewDataSource {
         let routeURL = "\(kRouteGoodsDetail)?\(kRouteGoodsDetailParamId)=\(String(describing: goods?.goodsId ?? ""))"
                 
         let goodsDetailVC = QMRouter.handle(routeURL, complexParams: ["key":"value"]) { (params) in
-            
+            print(params)
         }
         
         if let vc = goodsDetailVC as? UIViewController {
