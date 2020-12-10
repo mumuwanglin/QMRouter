@@ -32,4 +32,8 @@ extension HomeModule: QMApplicationLifeCycle {
         
         return true
     }
+    
+    public func applicationWillTerminate(_ application: UIApplication) {
+        print("applicationWillTerminate")
+    }
 }

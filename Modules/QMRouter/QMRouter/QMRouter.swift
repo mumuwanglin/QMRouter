@@ -14,17 +14,23 @@ final public class QMRouter: NSObject, QMRouterModuleProtocol {
     
     public static let shared = QMRouter()
     
-    /// 保存Module的字典
-    public var moduleDict = [String: Any]()
-    
     /// 保存路由的字典
     @QMProtected
     public var routes = [String: QMRouteHandler]()
     
-    /// 所有注册的 module
+    /// 保存Module的字典
+    public var moduleDict = [String: Any]()
+    
+    /// 所有注册的 Module
     public var allRegisterModules: [QMModuleProtocol] {
         let modules = moduleDict.values.compactMap { $0 as? QMModuleProtocol }
         return modules.sorted { $0.priority > $1.priority }
+    }
+    
+    /// 所有实现 Application 协议的 Module
+    public var allApplicationModules: [QMApplicationLifeCycle] {
+        let modules = moduleDict.values.compactMap { $0 as? QMApplicationLifeCycle}
+        return modules
     }
 
     /// 注册 module
@@ -149,13 +155,18 @@ extension QMRouter: QMRouterHandlerProtocol {
 
 /// Application 生命周期方法
 extension QMRouter: QMApplicationLifeCycle {
+    
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        // 筛选出实现 QMApplicationLifeCycle 的 Module
-        let applicationModules = moduleDict.values.compactMap { $0 as? QMApplicationLifeCycle }
-        // 实现方法
-        for tempModule in applicationModules {
-            let _ = tempModule.application?(application, didFinishLaunchingWithOptions: launchOptions)
+        allApplicationModules.forEach { (module) in
+            let _ = module.application?(application, didFinishLaunchingWithOptions: launchOptions)
         }
-        return false
+        return true
     }
+    
+    public func applicationWillTerminate(_ application: UIApplication) {
+        allApplicationModules.forEach { (module) in
+            module.applicationWillTerminate?(application)
+        }
+    }
+    
 }
