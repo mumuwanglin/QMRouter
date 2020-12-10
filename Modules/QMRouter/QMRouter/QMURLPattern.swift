@@ -90,7 +90,7 @@ class QMURLAnalysis: QMURLPattern {
                         let parsedJSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
                         return parsedJSON
                     } catch let error {
-                        assert(false, "parsed \(queryParams) error: \(error)")
+                        assertionFailure("parsed \(queryParams) error: \(error)")
                         print("parsed \(queryParams) error: \(error)")
                     }
                 }

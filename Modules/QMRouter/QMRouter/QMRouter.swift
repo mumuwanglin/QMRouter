@@ -133,7 +133,7 @@ extension QMRouter: QMRouterHandlerProtocol {
              return block(params)
         }
         
-        assert(false, "路由信息获取失败,请检查URL是否匹配")
+        assertionFailure("路由信息获取失败,请检查URL是否匹配")
         return nil
     }
     
