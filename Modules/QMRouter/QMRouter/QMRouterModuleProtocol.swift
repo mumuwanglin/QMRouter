@@ -9,23 +9,23 @@ import Foundation
 
 public protocol QMRouterModuleProtocol {
     /// 所有注册的Modules
-    static var allRegisterModules: [QMModuleProtocol] { get }
+    var allRegisterModules: [QMModuleProtocol] { get }
     
     /// 注册 module
-    static func register<Module>(_ protocolType: Module.Type, module: Module)
+    func register<Module>(_ protocolType: Module.Type, module: Module)
     
     /// 注销 module
-    static func unregister<Module>(_ protocolType: Module.Type)
+    func unregister<Module>(_ protocolType: Module.Type)
     
     /// 注销所有 modules
-    static func unregisterAllModules()
+    func unregisterAllModules()
     
     /// 是否注册过 module
-    static func registered<Module>(for protocolType: Module.Type) -> Bool
+    func registered<Module>(for protocolType: Module.Type) -> Bool
     
     /// 获取 module
-    static func module<Module>(for protocolType: Module.Type) -> Module?
+    func module<Module>(for protocolType: Module.Type) -> Module?
     
     /// 初始化所有的 modules
-    static func setupAllModules()
+    func setupAllModules()
 }

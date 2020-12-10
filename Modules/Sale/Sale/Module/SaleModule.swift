@@ -12,7 +12,7 @@ final public class SaleModule: SaleModuleService, QMSharedInstanceProtocol {
     public static var sharedInstance: SaleModule = SaleModule()
     
     public func setup() {
-        QMRouter.bind(kRouteSaleShoppingCart) { (params) -> Any in
+        QMRouter.shared.bind(kRouteSaleShoppingCart) { (params) -> Any in
             return ShoppingCartViewController()
         }
     }

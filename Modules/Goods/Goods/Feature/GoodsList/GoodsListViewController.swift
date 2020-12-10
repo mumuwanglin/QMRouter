@@ -9,8 +9,8 @@ import UIKit
 
 class GoodsListViewController: UIViewController {
 
-    let goodsModule = QMRouter.module(for: GoodsModuleService.self)
-    let saleModule = QMRouter.module(for: SaleModuleService.self)
+    let goodsModule = QMRouter.shared.module(for: GoodsModuleService.self)
+    let saleModule = QMRouter.shared.module(for: SaleModuleService.self)
     
     private lazy var tableView: UITableView = {
         let tmp = UITableView()
@@ -49,7 +49,7 @@ class GoodsListViewController: UIViewController {
     }
 
     @objc func goToShoppingCart() {
-        let shopingCartVC = QMRouter.handle(kRouteSaleShoppingCart)
+        let shopingCartVC = QMRouter.shared.handle(kRouteSaleShoppingCart)
         if let vc = shopingCartVC as? UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -79,7 +79,7 @@ extension GoodsListViewController: UITableViewDelegate, UITableViewDataSource {
         let goods = goodsModule?.popularGoodsList()[indexPath.row]
         let routeURL = "\(kRouteGoodsDetail)?\(kRouteGoodsDetailParamId)=\(String(describing: goods?.goodsId ?? ""))"
                 
-        let goodsDetailVC = QMRouter.handle(routeURL, complexParams: ["key":"value"]) { (params) in
+        let goodsDetailVC = QMRouter.shared.handle(routeURL, complexParams: ["key":"value"]) { (params) in
             print(params)
         }
         

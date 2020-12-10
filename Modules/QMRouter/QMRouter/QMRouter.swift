@@ -5,45 +5,52 @@
 //  Created by mumu on 2020/11/18.
 //  路由类
 import Foundation
+import UIKit
 
 let kQMRouterURL = "kQMRouterURL"
 let kQMRouterCompletion = "kQMRouterCompletion"
 
-final public class QMRouter: QMRouterModuleProtocol {
+final public class QMRouter: NSObject, QMRouterModuleProtocol {
     
-    // 保存Module的字典
-    public static var moduleDict = [String: Any]()
+    public static let shared = QMRouter()
+    
+    /// 保存Module的字典
+    public var moduleDict = [String: Any]()
+    
+    /// 保存路由的字典
+    @QMProtected
+    public var routes = [String: QMRouteHandler]()
     
     /// 所有注册的 module
-    public static var allRegisterModules: [QMModuleProtocol] {
+    public var allRegisterModules: [QMModuleProtocol] {
         let modules = moduleDict.values.compactMap { $0 as? QMModuleProtocol }
         return modules.sorted { $0.priority > $1.priority }
     }
 
     /// 注册 module
-    public static func register<Module>(_ protocolType: Module.Type, module: Module) {
+    public func register<Module>(_ protocolType: Module.Type, module: Module) {
         let key = moduleKey(for: protocolType)
         moduleDict[key] = module
     }
 
     /// 注销 module
-    public static func unregister<Module>(_ protocolType: Module.Type) {
+    public func unregister<Module>(_ protocolType: Module.Type) {
         moduleDict.removeValue(forKey: "\(protocolType)")
     }
 
     /// 注销所有 modules
-    public static func unregisterAllModules() {
+    public func unregisterAllModules() {
         moduleDict.removeAll()
     }
     
     /// 是否注册过 module
-    public static func registered<Module>(for protocolType: Module.Type) -> Bool {
+    public func registered<Module>(for protocolType: Module.Type) -> Bool {
         let key = moduleKey(for: protocolType)
         return moduleDict[key] != nil
     }
 
     /// 获取 module
-    public static func module<Module>(for protocolType: Module.Type) -> Module? {
+    public func module<Module>(for protocolType: Module.Type) -> Module? {
         let key = moduleKey(for: protocolType)
         guard  let module = moduleDict[key] else {
             return nil
@@ -52,7 +59,7 @@ final public class QMRouter: QMRouterModuleProtocol {
     }
 
     /// 初始化所有的 modules
-    public static func setupAllModules() {
+    public func setupAllModules() {
         allRegisterModules.forEach { (module) in            
             if module.setupModuleSynchronously {
                 DispatchQueue.global(qos: .default).async {
@@ -64,37 +71,34 @@ final public class QMRouter: QMRouterModuleProtocol {
         }
     }
     
-    private static func moduleKey<Module>(for protocolType: Module.Type) -> String {
+    private func moduleKey<Module>(for protocolType: Module.Type) -> String {
         return "\(protocolType)"
     }
 }
 
 
 extension QMRouter: QMRouterHandlerProtocol {
-    
-    @QMProtected
-    public static var routes = [String: QMRouteHandler]()
-    
+        
     /// 绑定路由
-    public static func bind(_ url: String, to handler: @escaping ([String : Any]) -> Any) {
+    public func bind(_ url: String, to handler: @escaping ([String : Any]) -> Any) {
         let urlAnalysis = QMURLAnalysis(url)
         
         routes[urlAnalysis.urlKey] = handler
     }
     
     /// 解绑路由
-    public static func unbind(_ url: String) {
+    public func unbind(_ url: String) {
         let urlAnalysis = QMURLAnalysis(url)
         routes.removeValue(forKey: urlAnalysis.urlKey)
     }
     
     /// 解绑所有路由
-    public static func unbindAllURLs() {
+    public func unbindAllURLs() {
         routes.removeAll()
     }
     
     /// 判断是否可以绑定路由
-    public static func canHandle(_ url: String) -> Bool {
+    public func canHandle(_ url: String) -> Bool {
         let urlAnalysis = QMURLAnalysis(url)
         if url.isEmpty {
             return false
@@ -107,13 +111,13 @@ extension QMRouter: QMRouterHandlerProtocol {
     }
     
     /// 处理 handle
-    public static func handle(_ url: String) -> Any? {
+    public func handle(_ url: String) -> Any? {
 
         return handle(url, complexParams: nil, completion: nil)
     }
     
     /// 处理带参数的 handle
-    public static func handle(_ url: String, complexParams: [String : Any]?, completion: QMRouteCompletion?) -> Any? {
+    public func handle(_ url: String, complexParams: [String : Any]?, completion: QMRouteCompletion?) -> Any? {
         
         let urlAnalysis = QMURLAnalysis(url)
         
@@ -134,11 +138,24 @@ extension QMRouter: QMRouterHandlerProtocol {
     }
     
     /// 路由获取成功的回调
-    public static func complete(_ params: Dictionary<String, Any>, result: Any) {
+    public func complete(_ params: Dictionary<String, Any>, result: Any) {
         let completion = params[kQMRouterCompletion] as? QMRouteCompletion
                 
         if let block = completion {            
             block(result)
         }
+    }
+}
+
+/// Application 生命周期方法
+extension QMRouter: QMApplicationLifeCycle {
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        // 筛选出实现 QMApplicationLifeCycle 的 Module
+        let applicationModules = moduleDict.values.compactMap { $0 as? QMApplicationLifeCycle }
+        // 实现方法
+        for tempModule in applicationModules {
+            let _ = tempModule.application?(application, didFinishLaunchingWithOptions: launchOptions)
+        }
+        return false
     }
 }

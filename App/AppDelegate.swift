@@ -14,9 +14,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // 注册Module
+        registerModules()
+        
+        let _ = QMRouter.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         return true
     }
 
+    // 注册协议
+    func registerModules() {
+        QMRouter.shared.register(HomeModuleService.self, module: HomeModule.sharedInstance)
+        QMRouter.shared.register(GoodsModuleService.self, module: GoodsModule.sharedInstance)
+        QMRouter.shared.register(SaleModuleService.self, module: SaleModule.sharedInstance)
+        QMRouter.shared.setupAllModules()
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

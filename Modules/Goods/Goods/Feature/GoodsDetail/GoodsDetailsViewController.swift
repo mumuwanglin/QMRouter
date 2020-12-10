@@ -9,7 +9,7 @@ import UIKit
 
 public class GoodsDetailsViewController: UIViewController {
 
-    public let saleModule = QMRouter.module(for: SaleModuleService.self)
+    public let saleModule = QMRouter.shared.module(for: SaleModuleService.self)
     
     public var goodsId: String?
     
@@ -53,7 +53,7 @@ public class GoodsDetailsViewController: UIViewController {
     }
     
     @objc func goToShoppingCart() {
-        let shopingCartVC = QMRouter.handle(kRouteSaleShoppingCart)
+        let shopingCartVC = QMRouter.shared.handle(kRouteSaleShoppingCart)
         if let vc = shopingCartVC as? UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }

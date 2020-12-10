@@ -10,7 +10,7 @@ import UIKit
 class ShoppingCartViewController: UIViewController {
 
     let shopingCartManager = ShoppingCartManager.sharedInstance
-    let goodsModule = QMRouter.module(for: GoodsModuleService.self)
+    let goodsModule = QMRouter.shared.module(for: GoodsModuleService.self)
     
     private lazy var tableView: UITableView = {
         let tmp = UITableView()

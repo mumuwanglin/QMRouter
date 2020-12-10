@@ -7,22 +7,22 @@
 
 import Foundation
 
-final public class GoodsModule: GoodsModuleService,QMSharedInstanceProtocol {
+final public class GoodsModule: NSObject, GoodsModuleService,QMSharedInstanceProtocol {
     
     public static var sharedInstance: GoodsModule = GoodsModule()
     
     public func setup() {
-        QMRouter.bind(kRouteGoodsDetail) { (params) -> Any in
+        QMRouter.shared.bind(kRouteGoodsDetail) { (params) -> Any in
             let detailVC = GoodsDetailsViewController()
             detailVC.goodsId = params[kRouteGoodsDetailParamId] as? String
             
             // 注册完成后的一些操作
-            QMRouter.complete(params, result: "我是成功回调的参数")
+            QMRouter.shared.complete(params, result: "我是成功回调的参数")
             
             return detailVC
         }
         
-        QMRouter.bind(kRouteAllGoodsList) { (params) -> Any in
+        QMRouter.shared.bind(kRouteAllGoodsList) { (params) -> Any in
             return GoodsListViewController()
         }
     }
@@ -72,4 +72,13 @@ final public class GoodsModule: GoodsModuleService,QMSharedInstanceProtocol {
     }
     
     
+}
+
+extension GoodsModule: QMApplicationLifeCycle {
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        print("didFinishLaunchingWithOptions launchOptions")
+        
+        return true
+    }
 }

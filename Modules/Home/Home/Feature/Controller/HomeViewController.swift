@@ -16,8 +16,8 @@ class HomeViewController: UIViewController {
         return tmp
     }()
     
-    let goodsModule = QMRouter.module(for: GoodsModuleService.self)
-    let saleModule = QMRouter.module(for: SaleModuleService.self)
+    let goodsModule = QMRouter.shared.module(for: GoodsModuleService.self)
+    let saleModule = QMRouter.shared.module(for: SaleModuleService.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func goToShoppingCart() {
-        let shopingCartVC = QMRouter.handle(kRouteSaleShoppingCart)
+        let shopingCartVC = QMRouter.shared.handle(kRouteSaleShoppingCart)
         if let vc = shopingCartVC as? UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -98,14 +98,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let goods = goodsModule?.popularGoodsList()[indexPath.row]
                     
-            let goodsDetailVC = QMRouter.handle(kRouteGoodsDetail, complexParams: [kRouteGoodsDetailParamId: "\(String(describing: goods?.goodsId ?? ""))"]) { (params) in
+            let goodsDetailVC = QMRouter.shared.handle(kRouteGoodsDetail, complexParams: [kRouteGoodsDetailParamId: "\(String(describing: goods?.goodsId ?? ""))"]) { (params) in
                 print(params)
             }
             if let vc = goodsDetailVC as? UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }                        
         } else if indexPath.section == 1 {
-            let allGoodsListVC = QMRouter.handle(kRouteAllGoodsList)
+            let allGoodsListVC = QMRouter.shared.handle(kRouteAllGoodsList)
             if let vc = allGoodsListVC as? UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }

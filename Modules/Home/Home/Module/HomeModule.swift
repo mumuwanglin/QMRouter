@@ -7,7 +7,7 @@
 
 import Foundation
 
-final public class HomeModule: HomeModuleService, QMSharedInstanceProtocol {
+final public class HomeModule: NSObject, HomeModuleService, QMSharedInstanceProtocol {
     
     public static var sharedInstance: HomeModule = HomeModule()
     
@@ -19,8 +19,17 @@ final public class HomeModule: HomeModuleService, QMSharedInstanceProtocol {
         
     
     public func setup() {
-        QMRouter.bind(kRouteHomePage) { (params) -> Any in
+        QMRouter.shared.bind(kRouteHomePage) { (params) -> Any in
             return HomeViewController()
         }
+    }
+}
+
+extension HomeModule: QMApplicationLifeCycle {
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        print("didFinishLaunchingWithOptions launchOptions")
+        
+        return true
     }
 }
