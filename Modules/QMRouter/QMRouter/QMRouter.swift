@@ -26,12 +26,6 @@ final public class QMRouter: NSObject, QMRouterModuleProtocol {
         let modules = moduleDict.values.compactMap { $0 as? QMModuleProtocol }
         return modules.sorted { $0.priority > $1.priority }
     }
-    
-    /// 所有实现 Application 协议的 Module
-    public var allApplicationModules: [QMApplicationLifeCycle] {
-        let modules = moduleDict.values.compactMap { $0 as? QMApplicationLifeCycle}
-        return modules
-    }
 
     /// 注册 module
     public func register<Module>(_ protocolType: Module.Type, module: Module) {
@@ -155,6 +149,11 @@ extension QMRouter: QMRouterHandlerProtocol {
 
 /// Application 生命周期方法
 extension QMRouter: QMApplicationLifeCycle {
+    /// 所有实现 Application 协议的 Module
+    public var allApplicationModules: [QMApplicationLifeCycle] {
+        let modules = moduleDict.values.compactMap { $0 as? QMApplicationLifeCycle}
+        return modules
+    }
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         allApplicationModules.forEach { (module) in
