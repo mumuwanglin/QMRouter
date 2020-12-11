@@ -26,6 +26,9 @@ public protocol QMRouterModuleProtocol {
     /// 获取 module
     func module<Module>(for protocolType: Module.Type) -> Module?
     
+    /// 初始化 module    
+    func setupModules<Module>(for protocolType: Module.Type)
+    
     /// 初始化所有的 modules
     func setupAllModules()
 }
