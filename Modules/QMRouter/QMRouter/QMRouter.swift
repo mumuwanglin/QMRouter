@@ -60,12 +60,6 @@ final public class QMRouter: NSObject, QMRouterModuleProtocol {
         }
         return module as? Module
     }
-    
-    /// 初始化 module
-    public func setupModules<Module>(for protocolType: Module.Type) {
-        let setupModule = module(for: protocolType) as? QMModuleProtocol
-        setupModule?.setup()
-    }
 
     /// 初始化所有的 modules
     public func setupAllModules() {
