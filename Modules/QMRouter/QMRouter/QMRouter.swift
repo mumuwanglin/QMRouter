@@ -23,7 +23,9 @@ final public class QMRouter: NSObject, QMRouterModuleProtocol {
     
     /// 所有注册的 Module
     public var allRegisterModules: [QMModuleProtocol] {
+        // 只有遵循 QMModuleProtocol 的Module才会被初始化
         let modules = moduleDict.values.compactMap { $0 as? QMModuleProtocol }
+        // module 根据 priority 排序
         return modules.sorted { $0.priority > $1.priority }
     }
 
@@ -35,7 +37,7 @@ final public class QMRouter: NSObject, QMRouterModuleProtocol {
 
     /// 注销 module
     public func unregister<Module>(_ protocolType: Module.Type) {
-        moduleDict.removeValue(forKey: "\(protocolType)")
+        moduleDict.removeValue(forKey: moduleKey(for: protocolType))
     }
 
     /// 注销所有 modules
@@ -53,6 +55,7 @@ final public class QMRouter: NSObject, QMRouterModuleProtocol {
     public func module<Module>(for protocolType: Module.Type) -> Module? {
         let key = moduleKey(for: protocolType)
         guard  let module = moduleDict[key] else {
+            assertionFailure("Module 获取失败")
             return nil
         }
         return module as? Module
