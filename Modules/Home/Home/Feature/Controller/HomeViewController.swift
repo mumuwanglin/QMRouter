@@ -61,7 +61,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,7 +70,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         } else if section == 1 {
             return 1
         } else {
-            return 0
+            return 1
         }
     }
     
@@ -89,6 +89,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.textLabel?.text = "\(goods?.name ?? ""): $\(goods?.price ?? 0)"
         } else if indexPath.section == 1 {
             cell?.textLabel?.text = "All Goods List"
+        } else {
+            cell?.textLabel?.text = "Open URL"
         }
         
         return cell!
@@ -109,6 +111,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             if let vc = allGoodsListVC as? UIViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-        }        
+        } else {
+            QMRouter.shared.handle("https://www.baidu.com?param={\"id\":\"197295\"}")
+        }
     }
 }

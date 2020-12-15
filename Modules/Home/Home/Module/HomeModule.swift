@@ -6,6 +6,10 @@
 //
 
 import Foundation
+import UIKit
+import QMRouter
+
+public let whiteList: [String] = ["https://www.baidu.com", "freereader://www.weibo.com", "https://www.souhu.com"]
 
 final public class HomeModule: NSObject, HomeModuleService, QMSharedInstanceProtocol {
     
@@ -21,6 +25,18 @@ final public class HomeModule: NSObject, HomeModuleService, QMSharedInstanceProt
     public func setup() {
         QMRouter.shared.bind(kRouteHomePage) { (params) -> Any in
             return HomeViewController()
+        }
+        
+        whiteList.filter({ (whiteUrl) -> Bool in
+            let urlAnalysis = QMURLAnalysis(whiteUrl)
+            return urlAnalysis.urlScheme != "freereader"
+        }).forEach { (whiteUrl) in
+            QMRouter.shared.bind(whiteUrl) { (params) -> Any? in
+                UIApplication.shared.open(URL(string: whiteUrl)!, options: [:], completionHandler: { (flag) in
+                    
+                })
+                return nil
+            }
         }
     }
 }

@@ -7,20 +7,14 @@
 
 import Foundation
 
-/// 路由类型类
-public enum QMURLPatternType: String {
-    case web = "freereader"     // 前端跳转的路由
-    case router = "qmrouter"    // APP内自定义跳转的路由
-    case openURL = "openurl"    // UIApplication打开URL
-}
-
 /// URL 匹配信息存储类的协议
 public protocol QMURLPattern {
-    /// 路由类型
-    var urlType: QMURLPatternType? { get }
     
     /// 存储到路由的key
     var urlKey: String { get }
+    
+    /// 解析出的 scheme
+    var urlScheme: String { get }
     
     /// 组成
     var components: Dictionary<String, Any> { get }
@@ -28,28 +22,22 @@ public protocol QMURLPattern {
 
 
 /// URL解析类
-class QMURLAnalysis: QMURLPattern {
-
-    var urlType: QMURLPatternType?
+public class QMURLAnalysis: QMURLPattern {
     
-    var urlKey: String = ""
+    public var urlKey: String = ""
     
-    var components: Dictionary<String, Any> = Dictionary()
+    public var urlScheme: String = ""
     
-    init(_ linkUrl: String) {
+    public var components: Dictionary<String, Any> = Dictionary()
+    
+    public init(_ linkUrl: String) {
         if !linkUrl.isEmpty, let urlString = linkUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             
             let URL = NSURL(string: urlString)
             
-            self.urlKey = "//\( URL?.host ?? "")\(URL?.path ?? "")"
+            self.urlScheme = URL?.scheme ?? ""
             
-            if URL?.scheme == QMURLPatternType.router.rawValue {
-                self.urlType = .router
-            } else if URL?.scheme == QMURLPatternType.web.rawValue {
-                self.urlType = .web
-            } else {
-                self.urlType = .openURL
-            }
+            self.urlKey = "//\( URL?.host ?? "")\(URL?.path ?? "")"
   
             if let components = URLComponents.init(string: URL?.absoluteString ?? "") {
                 let queryParams = extractQueryParams(components: components)
