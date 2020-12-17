@@ -8,7 +8,7 @@
 import Foundation
 
 /// 路由处理类型
-public typealias QMRouteHandler = ([String: Any]) -> Any?
+public typealias QMRouteHandler = ([String: Any]) -> Void
 
 /// 结束回调
 public typealias QMRouteCompletion = (Any) -> Void

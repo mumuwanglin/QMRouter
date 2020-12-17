@@ -12,18 +12,19 @@ final public class GoodsModule: NSObject, GoodsModuleService,QMSharedInstancePro
     public static var sharedInstance: GoodsModule = GoodsModule()
     
     public func setup() {
-        QMRouter.shared.bind(kRouteGoodsDetail) { (params) -> Any in
+        QMRouter.shared.bind(kRouteGoodsDetail) { (params) -> Void in
             let detailVC = GoodsDetailsViewController()
             detailVC.goodsId = params[kRouteGoodsDetailParamId] as? String
             
             // 注册完成后的一些操作
             QMRouter.shared.complete(params, result: "我是成功回调的参数")
             
-            return detailVC
+            UIViewController.getCurrentVC()?.navigationController?.pushViewController(detailVC, animated: true)
         }
         
-        QMRouter.shared.bind(kRouteAllGoodsList) { (params) -> Any in
-            return GoodsListViewController()
+        QMRouter.shared.bind(kRouteAllGoodsList) { (params) -> Void in
+            let vc = GoodsListViewController()
+            UIViewController.getCurrentVC()?.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

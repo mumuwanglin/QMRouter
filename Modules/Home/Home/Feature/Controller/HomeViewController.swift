@@ -51,10 +51,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func goToShoppingCart() {
-        let shopingCartVC = QMRouter.shared.handle(kRouteSaleShoppingCart)
-        if let vc = shopingCartVC as? UIViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        QMRouter.shared.handle(kRouteSaleShoppingCart)
     }
 }
 
@@ -99,18 +96,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let goods = goodsModule?.popularGoodsList()[indexPath.row]
-                    
-            let goodsDetailVC = QMRouter.shared.handle(kRouteGoodsDetail, complexParams: [kRouteGoodsDetailParamId: "\(String(describing: goods?.goodsId ?? ""))"]) { (params) in
+
+            QMRouter.shared.handle(kRouteGoodsDetail, complexParams: [kRouteGoodsDetailParamId: "\(String(describing: goods?.goodsId ?? ""))"]) { (params) in
                 print(params)
             }
-            if let vc = goodsDetailVC as? UIViewController {
-                self.navigationController?.pushViewController(vc, animated: true)
-            }                        
         } else if indexPath.section == 1 {
-            let allGoodsListVC = QMRouter.shared.handle(kRouteAllGoodsList)
-            if let vc = allGoodsListVC as? UIViewController {
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+            QMRouter.shared.handle(kRouteAllGoodsList)            
         } else {
             QMRouter.shared.handle("https://www.baidu.com?param={\"id\":\"197295\"}")
         }

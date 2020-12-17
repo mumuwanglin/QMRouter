@@ -49,10 +49,7 @@ class GoodsListViewController: UIViewController {
     }
 
     @objc func goToShoppingCart() {
-        let shopingCartVC = QMRouter.shared.handle(kRouteSaleShoppingCart)
-        if let vc = shopingCartVC as? UIViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        QMRouter.shared.handle(kRouteSaleShoppingCart)
     }
 }
 
@@ -79,12 +76,8 @@ extension GoodsListViewController: UITableViewDelegate, UITableViewDataSource {
         let goods = goodsModule?.popularGoodsList()[indexPath.row]
         let routeURL = "\(kRouteGoodsDetail)?\(kRouteGoodsDetailParamId)=\(String(describing: goods?.goodsId ?? ""))"
                 
-        let goodsDetailVC = QMRouter.shared.handle(routeURL, complexParams: ["key":"value"]) { (params) in
+        QMRouter.shared.handle(routeURL, complexParams: ["key":"value"]) { (params) in
             print(params)
-        }
-        
-        if let vc = goodsDetailVC as? UIViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

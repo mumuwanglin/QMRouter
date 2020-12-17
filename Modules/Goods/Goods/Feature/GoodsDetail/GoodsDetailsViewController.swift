@@ -53,9 +53,6 @@ public class GoodsDetailsViewController: UIViewController {
     }
     
     @objc func goToShoppingCart() {
-        let shopingCartVC = QMRouter.shared.handle(kRouteSaleShoppingCart)
-        if let vc = shopingCartVC as? UIViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        QMRouter.shared.handle(kRouteSaleShoppingCart)        
     }
 }

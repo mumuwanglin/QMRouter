@@ -83,7 +83,7 @@ final public class QMRouter: NSObject, QMRouterModuleProtocol {
 extension QMRouter: QMRouterHandlerProtocol {
         
     /// 绑定路由
-    public func bind(_ url: String, to handler: @escaping ([String : Any]) -> Any?) {
+    public func bind(_ url: String, to handler: @escaping ([String : Any]) -> Void) {
         let urlAnalysis = QMURLAnalysis(url)
         
         routes[urlAnalysis.urlKey] = handler

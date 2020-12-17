@@ -23,21 +23,25 @@ final public class HomeModule: NSObject, HomeModuleService, QMSharedInstanceProt
         
     
     public func setup() {
-        QMRouter.shared.bind(kRouteHomePage) { (params) -> Any in
-            return HomeViewController()
+        QMRouter.shared.bind(kRouteHomePage) { (params) -> Void in
+            let vc = HomeViewController()
+            UIViewController.getCurrentVC()?.navigationController?.pushViewController(vc, animated: true)
         }
         
         whiteList.filter({ (whiteUrl) -> Bool in
             let urlAnalysis = QMURLAnalysis(whiteUrl)
             return urlAnalysis.urlScheme != "freereader"
         }).forEach { (whiteUrl) in
-            QMRouter.shared.bind(whiteUrl) { (params) -> Any? in
+            QMRouter.shared.bind(whiteUrl) { (params) -> Void in
                 UIApplication.shared.open(URL(string: whiteUrl)!, options: [:], completionHandler: { (flag) in
                     
                 })
-                return nil
             }
         }
+    }
+    
+    public func getHomeViewController() -> UIViewController {
+        return HomeViewController()
     }
 }
 

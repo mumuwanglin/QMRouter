@@ -23,10 +23,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
+        let homeModule = QMRouter.shared.module(for: HomeModuleService.self)!
+        
         let windowScene = scene as! UIWindowScene
         self.window = UIWindow(windowScene: windowScene)
         self.window?.frame = windowScene.coordinateSpace.bounds
-        let navigationVC = UINavigationController(rootViewController: (QMRouter.shared.handle(kRouteHomePage) as! UIViewController))
+        let navigationVC = UINavigationController(rootViewController: homeModule.getHomeViewController())
         self.window?.rootViewController = navigationVC
         self.window?.makeKeyAndVisible()
         

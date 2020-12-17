@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 // 首页的路由
-public let kRouteHomePage: String = "qmrouter://home/home_page"
+public let kRouteHomePage: String = "freereader://home/home_page"
 
 // 首页的服务类
 public protocol HomeModuleService: QMModuleProtocol {
-    
+    func getHomeViewController() -> UIViewController
 }

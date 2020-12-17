@@ -8,9 +8,9 @@
 import Foundation
 
 // 所有商品的路由
-public let kRouteAllGoodsList: String = "qmrouter://goods/all_goods_list"
+public let kRouteAllGoodsList: String = "freereader://goods/all_goods_list"
 // 商品详情的路由
-public let kRouteGoodsDetail: String = "qmrouter://goods/detail"
+public let kRouteGoodsDetail: String = "freereader://goods/detail"
 // 跳转商品详情需要传递的参数
 public let kRouteGoodsDetailParamId: String = "id"
 

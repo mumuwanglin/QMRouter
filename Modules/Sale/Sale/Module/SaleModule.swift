@@ -12,8 +12,9 @@ final public class SaleModule: SaleModuleService, QMSharedInstanceProtocol {
     public static var sharedInstance: SaleModule = SaleModule()
     
     public func setup() {
-        QMRouter.shared.bind(kRouteSaleShoppingCart) { (params) -> Any in
-            return ShoppingCartViewController()
+        QMRouter.shared.bind(kRouteSaleShoppingCart) { (params) -> Void in
+            let vc = ShoppingCartViewController()
+            UIViewController.getCurrentVC()?.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
