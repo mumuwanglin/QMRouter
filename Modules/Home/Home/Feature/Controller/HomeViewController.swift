@@ -104,6 +104,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             QMRouter.shared.handle(kRouteAllGoodsList)            
         } else {
             QMRouter.shared.handle("https://www.baidu.com?param={\"id\":\"197295\"}")
+//            QMRouter.shared.handle("http://example.com?param1=value1&param2=value2")
         }
     }
 }

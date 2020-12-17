@@ -41,7 +41,11 @@ public class QMURLAnalysis: QMURLPattern {
   
             if let components = URLComponents.init(string: url?.absoluteString ?? "") {
                 let queryParams = extractQueryParams(components: components)
-                self.components = convertParamsToJson(queryParams: queryParams, linkUrl: linkUrl, host: components.host, scheme: url?.scheme) as? Dictionary<String, Any> ?? [:]
+                if queryParams["param"] != nil {
+                    self.components = convertParamsToJson(queryParams: queryParams, linkUrl: linkUrl, host: components.host, scheme: url?.scheme) as? Dictionary<String, Any> ?? [:]
+                } else {
+                    self.components = queryParams as? Dictionary<String, Any> ?? [:]
+                }
             }
         }
     }
@@ -63,6 +67,7 @@ public class QMURLAnalysis: QMURLPattern {
                 }
             }
         }
+        
         return queryParams
     }
 

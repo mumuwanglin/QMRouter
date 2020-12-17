@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import QMRouter
 
-public let whiteList: [String] = ["https://www.baidu.com", "freereader://www.weibo.com", "https://www.souhu.com"]
+public let whiteList: [String] = ["https://www.baidu.com", "freereader://www.weibo.com", "https://www.souhu.com", "http://example.com"]
 
 final public class HomeModule: NSObject, HomeModuleService, QMSharedInstanceProtocol {
     
