@@ -32,16 +32,16 @@ public class QMURLAnalysis: QMURLPattern {
     
     public init(_ linkUrl: String) {
         if !linkUrl.isEmpty, let urlString = linkUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                                    
+            let url = URL(string: urlString)
             
-            let URL = NSURL(string: urlString)
+            self.urlScheme = url?.scheme ?? ""
             
-            self.urlScheme = URL?.scheme ?? ""
-            
-            self.urlKey = "//\( URL?.host ?? "")\(URL?.path ?? "")"
+            self.urlKey = "//\( url?.host ?? "")\(url?.path ?? "")"
   
-            if let components = URLComponents.init(string: URL?.absoluteString ?? "") {
+            if let components = URLComponents.init(string: url?.absoluteString ?? "") {
                 let queryParams = extractQueryParams(components: components)
-                self.components = convertParamsToJson(queryParams: queryParams, linkUrl: linkUrl, host: components.host, scheme: URL?.scheme) as? Dictionary<String, Any> ?? [:]
+                self.components = convertParamsToJson(queryParams: queryParams, linkUrl: linkUrl, host: components.host, scheme: url?.scheme) as? Dictionary<String, Any> ?? [:]
             }
         }
     }
