@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		844E1E8E256E38C50067C3A6 /* HomeModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E1E8D256E38C50067C3A6 /* HomeModuleService.swift */; };
-		844E1E95256E39BE0067C3A6 /* Mediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E1E94256E39BE0067C3A6 /* Mediator.swift */; };
-		844E1EC3256E4CB40067C3A6 /* GoodsModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E1EC2256E4CB40067C3A6 /* GoodsModuleService.swift */; };
-		847D536625948325002F9427 /* MineModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D536525948325002F9427 /* MineModuleService.swift */; };
-		84914ADC256F5ADC00B85672 /* SaleModuleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84914ADB256F5ADC00B85672 /* SaleModuleService.swift */; };
+		847D5329259480F4002F9427 /* Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D5328259480F4002F9427 /* Mine.swift */; };
+		847D534125948167002F9427 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D534025948167002F9427 /* LoginViewController.swift */; };
+		847D53692594835E002F9427 /* MineModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847D53682594835E002F9427 /* MineModule.swift */; };
+		FE6481EDEC9676AC12244852 /* Pods_App_Mine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A28D6538D40FD820AB4A07 /* Pods_App_Mine.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		844E1E74256E38930067C3A6 /* CopyFiles */ = {
+		847D5323259480F4002F9427 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -27,88 +26,133 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		844E1E76256E38930067C3A6 /* libMediator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMediator.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		844E1E8D256E38C50067C3A6 /* HomeModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleService.swift; sourceTree = "<group>"; };
-		844E1E94256E39BE0067C3A6 /* Mediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mediator.swift; sourceTree = "<group>"; };
-		844E1EC2256E4CB40067C3A6 /* GoodsModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsModuleService.swift; sourceTree = "<group>"; };
-		847D536525948325002F9427 /* MineModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineModuleService.swift; sourceTree = "<group>"; };
-		84914ADB256F5ADC00B85672 /* SaleModuleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleModuleService.swift; sourceTree = "<group>"; };
+		08333356D2EDC66BCF46AE38 /* Pods-App-Mine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Mine.debug.xcconfig"; path = "Target Support Files/Pods-App-Mine/Pods-App-Mine.debug.xcconfig"; sourceTree = "<group>"; };
+		19A28D6538D40FD820AB4A07 /* Pods_App_Mine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App_Mine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		847D5325259480F4002F9427 /* libMine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		847D5328259480F4002F9427 /* Mine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mine.swift; sourceTree = "<group>"; };
+		847D534025948167002F9427 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		847D53682594835E002F9427 /* MineModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineModule.swift; sourceTree = "<group>"; };
+		ED7AFD21FE1C28564236DAFD /* Pods-App-Mine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-Mine.release.xcconfig"; path = "Target Support Files/Pods-App-Mine/Pods-App-Mine.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		844E1E73256E38930067C3A6 /* Frameworks */ = {
+		847D5322259480F4002F9427 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE6481EDEC9676AC12244852 /* Pods_App_Mine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		844E1E6D256E38930067C3A6 = {
+		0B95B796E6591F1AF40A5E32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				844E1E78256E38930067C3A6 /* Mediator */,
-				844E1E77256E38930067C3A6 /* Products */,
+				19A28D6538D40FD820AB4A07 /* Pods_App_Mine.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		847D531C259480F4002F9427 = {
+			isa = PBXGroup;
+			children = (
+				847D5327259480F4002F9427 /* Mine */,
+				847D5326259480F4002F9427 /* Products */,
+				C22EF843D649863070A7018B /* Pods */,
+				0B95B796E6591F1AF40A5E32 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		844E1E77256E38930067C3A6 /* Products */ = {
+		847D5326259480F4002F9427 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				844E1E76256E38930067C3A6 /* libMediator.a */,
+				847D5325259480F4002F9427 /* libMine.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		844E1E78256E38930067C3A6 /* Mediator */ = {
+		847D5327259480F4002F9427 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				844E1E94256E39BE0067C3A6 /* Mediator.swift */,
-				844E1E8D256E38C50067C3A6 /* HomeModuleService.swift */,
-				844E1EC2256E4CB40067C3A6 /* GoodsModuleService.swift */,
-				84914ADB256F5ADC00B85672 /* SaleModuleService.swift */,
-				847D536525948325002F9427 /* MineModuleService.swift */,
+				847D533A2594812D002F9427 /* Module */,
+				847D533925948126002F9427 /* Feature */,
+				847D5328259480F4002F9427 /* Mine.swift */,
 			);
-			path = Mediator;
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		847D533925948126002F9427 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				847D533F25948139002F9427 /* Controller */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		847D533A2594812D002F9427 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				847D53682594835E002F9427 /* MineModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		847D533F25948139002F9427 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				847D534025948167002F9427 /* LoginViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C22EF843D649863070A7018B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				08333356D2EDC66BCF46AE38 /* Pods-App-Mine.debug.xcconfig */,
+				ED7AFD21FE1C28564236DAFD /* Pods-App-Mine.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../../Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		844E1E75256E38930067C3A6 /* Mediator */ = {
+		847D5324259480F4002F9427 /* Mine */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 844E1E7D256E38930067C3A6 /* Build configuration list for PBXNativeTarget "Mediator" */;
+			buildConfigurationList = 847D532C259480F4002F9427 /* Build configuration list for PBXNativeTarget "Mine" */;
 			buildPhases = (
-				844E1E72256E38930067C3A6 /* Sources */,
-				844E1E73256E38930067C3A6 /* Frameworks */,
-				844E1E74256E38930067C3A6 /* CopyFiles */,
+				345B32911D5D293E73D4928F /* [CP] Check Pods Manifest.lock */,
+				847D5321259480F4002F9427 /* Sources */,
+				847D5322259480F4002F9427 /* Frameworks */,
+				847D5323259480F4002F9427 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Mediator;
-			productName = Mediator;
-			productReference = 844E1E76256E38930067C3A6 /* libMediator.a */;
+			name = Mine;
+			productName = Mine;
+			productReference = 847D5325259480F4002F9427 /* libMine.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		844E1E6E256E38930067C3A6 /* Project object */ = {
+		847D531D259480F4002F9427 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
-					844E1E75256E38930067C3A6 = {
-						CreatedOnToolsVersion = 12.2;
+					847D5324259480F4002F9427 = {
+						CreatedOnToolsVersion = 12.3;
 					};
 				};
 			};
-			buildConfigurationList = 844E1E71256E38930067C3A6 /* Build configuration list for PBXProject "Mediator" */;
+			buildConfigurationList = 847D5320259480F4002F9427 /* Build configuration list for PBXProject "Mine" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -116,33 +160,56 @@
 				en,
 				Base,
 			);
-			mainGroup = 844E1E6D256E38930067C3A6;
-			productRefGroup = 844E1E77256E38930067C3A6 /* Products */;
+			mainGroup = 847D531C259480F4002F9427;
+			productRefGroup = 847D5326259480F4002F9427 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				844E1E75256E38930067C3A6 /* Mediator */,
+				847D5324259480F4002F9427 /* Mine */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		345B32911D5D293E73D4928F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-App-Mine-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		844E1E72256E38930067C3A6 /* Sources */ = {
+		847D5321259480F4002F9427 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				844E1E95256E39BE0067C3A6 /* Mediator.swift in Sources */,
-				844E1E8E256E38C50067C3A6 /* HomeModuleService.swift in Sources */,
-				84914ADC256F5ADC00B85672 /* SaleModuleService.swift in Sources */,
-				844E1EC3256E4CB40067C3A6 /* GoodsModuleService.swift in Sources */,
-				847D536625948325002F9427 /* MineModuleService.swift in Sources */,
+				847D534125948167002F9427 /* LoginViewController.swift in Sources */,
+				847D53692594835E002F9427 /* MineModule.swift in Sources */,
+				847D5329259480F4002F9427 /* Mine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		844E1E7B256E38930067C3A6 /* Debug */ = {
+		847D532A259480F4002F9427 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -203,7 +270,7 @@
 			};
 			name = Debug;
 		};
-		844E1E7C256E38930067C3A6 /* Release */ = {
+		847D532B259480F4002F9427 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -258,8 +325,9 @@
 			};
 			name = Release;
 		};
-		844E1E7E256E38930067C3A6 /* Debug */ = {
+		847D532D259480F4002F9427 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08333356D2EDC66BCF46AE38 /* Pods-App-Mine.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9CQQVJ9M3Q;
@@ -271,8 +339,9 @@
 			};
 			name = Debug;
 		};
-		844E1E7F256E38930067C3A6 /* Release */ = {
+		847D532E259480F4002F9427 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED7AFD21FE1C28564236DAFD /* Pods-App-Mine.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9CQQVJ9M3Q;
@@ -287,25 +356,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		844E1E71256E38930067C3A6 /* Build configuration list for PBXProject "Mediator" */ = {
+		847D5320259480F4002F9427 /* Build configuration list for PBXProject "Mine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				844E1E7B256E38930067C3A6 /* Debug */,
-				844E1E7C256E38930067C3A6 /* Release */,
+				847D532A259480F4002F9427 /* Debug */,
+				847D532B259480F4002F9427 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		844E1E7D256E38930067C3A6 /* Build configuration list for PBXNativeTarget "Mediator" */ = {
+		847D532C259480F4002F9427 /* Build configuration list for PBXNativeTarget "Mine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				844E1E7E256E38930067C3A6 /* Debug */,
-				844E1E7F256E38930067C3A6 /* Release */,
+				847D532D259480F4002F9427 /* Debug */,
+				847D532E259480F4002F9427 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 844E1E6E256E38930067C3A6 /* Project object */;
+	rootObject = 847D531D259480F4002F9427 /* Project object */;
 }

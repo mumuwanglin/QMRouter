@@ -12,6 +12,7 @@ import UIKit
 @_exported import Shop
 @_exported import Sale
 @_exported import Goods
+@_exported import Mine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

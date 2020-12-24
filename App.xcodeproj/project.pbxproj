@@ -23,6 +23,7 @@
 		846DE4B1256E2FDF006FC165 /* libSale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 846DE458256E2DFE006FC165 /* libSale.a */; };
 		846DE4B2256E2FE6006FC165 /* libGoods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 846DE475256E2E0C006FC165 /* libGoods.a */; };
 		846DE4B3256E2FEC006FC165 /* libQMRouter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 846DE492256E2E48006FC165 /* libQMRouter.a */; };
+		847D534325948260002F9427 /* libMine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 847D5334259480F5002F9427 /* libMine.a */; };
 		D12BF5976487D288FC3532F7 /* Pods_App_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5643333F05410B60CCE6919 /* Pods_App_AppUITests.framework */; };
 		F424C2FC318CB60004A3229C /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 915B0A48901BED22DBBCDE8B /* Pods_App.framework */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 846DE483256E2E47006FC165;
 			remoteInfo = QMRouter;
+		};
+		847D5333259480F5002F9427 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 847D532F259480F4002F9427 /* Mine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 847D5325259480F4002F9427;
+			remoteInfo = Mine;
+		};
+		847D534825948276002F9427 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 847D532F259480F4002F9427 /* Mine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 847D5324259480F4002F9427;
+			remoteInfo = Mine;
 		};
 		84914B282570927C00B85672 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -153,6 +168,7 @@
 		846DE453256E2DFC006FC165 /* Sale.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sale.xcodeproj; path = Modules/Sale/Sale.xcodeproj; sourceTree = "<group>"; };
 		846DE470256E2E0B006FC165 /* Goods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Goods.xcodeproj; path = Modules/Goods/Goods.xcodeproj; sourceTree = "<group>"; };
 		846DE48D256E2E47006FC165 /* QMRouter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QMRouter.xcodeproj; path = Modules/QMRouter/QMRouter.xcodeproj; sourceTree = "<group>"; };
+		847D532F259480F4002F9427 /* Mine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mine.xcodeproj; path = Modules/Mine/Mine.xcodeproj; sourceTree = "<group>"; };
 		915B0A48901BED22DBBCDE8B /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA1535050B92CD1E25DBD991 /* Pods-AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTests.debug.xcconfig"; path = "Target Support Files/Pods-AppTests/Pods-AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B5643333F05410B60CCE6919 /* Pods_App_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +183,7 @@
 			files = (
 				844E1E8A256E38A10067C3A6 /* libMediator.a in Frameworks */,
 				846DE4B3256E2FEC006FC165 /* libQMRouter.a in Frameworks */,
+				847D534325948260002F9427 /* libMine.a in Frameworks */,
 				846DE4B1256E2FDF006FC165 /* libSale.a in Frameworks */,
 				846DE4B2256E2FE6006FC165 /* libGoods.a in Frameworks */,
 				846DE4AF256E2FD0006FC165 /* libHome.a in Frameworks */,
@@ -208,6 +225,7 @@
 			children = (
 				844E1E80256E38930067C3A6 /* Mediator.xcodeproj */,
 				846DE48D256E2E47006FC165 /* QMRouter.xcodeproj */,
+				847D532F259480F4002F9427 /* Mine.xcodeproj */,
 				846DE470256E2E0B006FC165 /* Goods.xcodeproj */,
 				846DE453256E2DFC006FC165 /* Sale.xcodeproj */,
 				846DE436256E2DE9006FC165 /* Shop.xcodeproj */,
@@ -313,6 +331,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		847D5330259480F4002F9427 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				847D5334259480F5002F9427 /* libMine.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B90CBE3AA4039C348A5305EB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +370,7 @@
 			dependencies = (
 				84914B2B2570927C00B85672 /* PBXTargetDependency */,
 				84914B292570927C00B85672 /* PBXTargetDependency */,
+				847D534925948276002F9427 /* PBXTargetDependency */,
 				84914B2D2570927C00B85672 /* PBXTargetDependency */,
 				84914B2F2570927C00B85672 /* PBXTargetDependency */,
 				84914B312570927C00B85672 /* PBXTargetDependency */,
@@ -441,6 +468,10 @@
 					ProjectRef = 844E1E80256E38930067C3A6 /* Mediator.xcodeproj */;
 				},
 				{
+					ProductGroup = 847D5330259480F4002F9427 /* Products */;
+					ProjectRef = 847D532F259480F4002F9427 /* Mine.xcodeproj */;
+				},
+				{
 					ProductGroup = 846DE48E256E2E47006FC165 /* Products */;
 					ProjectRef = 846DE48D256E2E47006FC165 /* QMRouter.xcodeproj */;
 				},
@@ -503,6 +534,13 @@
 			fileType = archive.ar;
 			path = libQMRouter.a;
 			remoteRef = 846DE491256E2E48006FC165 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		847D5334259480F5002F9427 /* libMine.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMine.a;
+			remoteRef = 847D5333259480F5002F9427 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -676,6 +714,11 @@
 			isa = PBXTargetDependency;
 			target = 846DE3CF256E2D34006FC165 /* App */;
 			targetProxy = 846DE3F2256E2D37006FC165 /* PBXContainerItemProxy */;
+		};
+		847D534925948276002F9427 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Mine;
+			targetProxy = 847D534825948276002F9427 /* PBXContainerItemProxy */;
 		};
 		84914B292570927C00B85672 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

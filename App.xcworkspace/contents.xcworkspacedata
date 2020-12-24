@@ -7,4 +7,19 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Modules/Goods/Goods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/Home/Home.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/Mine/Mine.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/Sale/Sale.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/Shop/Shop.xcodeproj">
+   </FileRef>
 </Workspace>

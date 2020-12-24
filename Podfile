@@ -25,6 +25,10 @@ target 'App' do
     project 'Modules/Goods/Goods.xcodeproj'
   end
   
+  target 'Mine' do
+    project 'Modules/Mine/Mine.xcodeproj'
+  end
+
   
   target 'AppTests' do
     inherit! :search_paths

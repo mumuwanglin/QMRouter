@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         QMRouter.shared.register(HomeModuleService.self, module: HomeModule.sharedInstance)
         QMRouter.shared.register(GoodsModuleService.self, module: GoodsModule.sharedInstance)
         QMRouter.shared.register(SaleModuleService.self, module: SaleModule.sharedInstance)
+        QMRouter.shared.register(MineModuleService.self, module: MineModule.sharedInstance)
         QMRouter.shared.setupAllModules()
     }
     
