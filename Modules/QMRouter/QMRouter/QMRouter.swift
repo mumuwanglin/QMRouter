@@ -113,15 +113,9 @@ extension QMRouter: QMRouterHandlerProtocol {
         return true
     }
     
-    /// 处理 handle
-    @discardableResult
-    public func handle(_ url: String) -> Any? {
-        return handle(url, complexParams: nil, completion: nil)
-    }
-    
     /// 处理带参数的 handle
     @discardableResult
-    public func handle(_ url: String, complexParams: [String : Any]?, completion: QMRouteCompletion?) -> Any? {
+    public func handle(_ url: String, complexParams: [String : Any]? = nil, completion: QMRouteCompletion? = nil) -> Any? {
         
         let urlAnalysis = QMURLAnalysis(url)
         

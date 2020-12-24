@@ -28,9 +28,6 @@ public protocol QMRouterHandlerProtocol {
     /// 是否可以处理 url
     func canHandle(_ url: String) -> Bool
     
-    /// 处理 handle
-    func handle(_ url: String) -> Any?
-    
     /// 处理 url
     func handle(_ url: String, complexParams: [String: Any]? , completion: QMRouteCompletion?) -> Any?
     
